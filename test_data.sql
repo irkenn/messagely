@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS messagely;
-CREATE DATABASE messagely;
+DROP DATABASE IF EXISTS messagely_test;
+CREATE DATABASE messagely_test;
 
-\c messagely;
+\c messagely_test;
 
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS messages;

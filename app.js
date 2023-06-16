@@ -5,7 +5,7 @@ const express = require("express");
 const cors = require("cors");
 const { authenticateJWT } = require("./middleware/auth");
 
-const ExpressError = require("./expressError")
+const ExpressError = require("./expressError");
 const app = express();
 
 // allow both form-encoded and json body parsing
@@ -21,12 +21,12 @@ app.use(authenticateJWT);
 /** routes */
 
 const authRoutes = require("./routes/auth");
-const userRoutes = require("./routes/users");
 const messageRoutes = require("./routes/messages");
+const userRoutes = require("./routes/users");
 
 app.use("/auth", authRoutes);
-app.use("/users", userRoutes);
 app.use("/messages", messageRoutes);
+app.use("/users", userRoutes);
 
 /** 404 handler */
 
@@ -43,7 +43,7 @@ app.use(function(err, req, res, next) {
 
   return res.json({
     error: err,
-    message: err.message
+    // message: err.message
   });
 });
 

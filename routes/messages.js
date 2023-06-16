@@ -1,3 +1,15 @@
+const express = require('express');
+const router = new express.Router();
+const msgMiddleware = require('../middleware/message');
+// const { authenticateJWT, ensureLoggedIn, ensureCorrectUser } = require('../middleware/auth');
+
+
+router.get('/:id', msgMiddleware.getMessageDetail);
+//What's up with the ID in this case?
+
+
+// router.post('/register', authMiddleware.registerUser);
+
 /** GET /:id - get detail of message.
  *
  * => {message: {id,
@@ -28,3 +40,4 @@
  *
  **/
 
+module.exports = router;

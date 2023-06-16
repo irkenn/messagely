@@ -1,4 +1,27 @@
-/** GET / - get list of users.
+const express = require('express');
+const router = new express.Router();
+const usersMiddleware = require('../middleware/users');
+const authMiddleware = require('../middleware/auth');
+
+
+router.get('/', authMiddleware.ensureLoggedIn,
+                usersMiddleware.getUsers);
+
+router.get('/:username', authMiddleware.ensureLoggedIn,
+                        authMiddleware.authenticateJWT,
+                        usersMiddleware.getSingleUser);
+
+router.get('/:username/to', authMiddleware.ensureLoggedIn,
+                            authMiddleware.authenticateJWT,
+                            authMiddleware.ensureSameUser,
+                            usersMiddleware.msgToUser);
+
+router.get('/:username/from',   authMiddleware.ensureLoggedIn,
+                                authMiddleware.authenticateJWT,
+                                authMiddleware.ensureSameUser,
+                                usersMiddleware.msgFromUser);
+
+                            /** GET / - get list of users.
  *
  * => {users: [{username, first_name, last_name, phone}, ...]}
  *
@@ -32,3 +55,5 @@
  *                 to_user: {username, first_name, last_name, phone}}, ...]}
  *
  **/
+
+module.exports = router;
