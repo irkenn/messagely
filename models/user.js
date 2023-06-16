@@ -42,18 +42,6 @@ class User {
 
   /** Authenticate: is this username/password valid? Returns boolean. */
 
-  static async authenticateUser(username, password) { 
-    try{
-      const result = await client.query(
-      `SELECT username, password FROM users WHERE username=$1`, 
-      [username]);
-      let output = await result.rows[0].password === password;
-      return output;
-    }
-    catch(e){
-      throw new ExpressError(`No match username/password`, 400);
-    }
-  }
     //in the middleware I'll have to use a .then() method because this function will return a promise
     /** Update last_login_at for user */
     
